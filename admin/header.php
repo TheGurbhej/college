@@ -1,4 +1,12 @@
 <?php
+session_start();
+
+if (!isset($_SESSION["check_login"]) || $_SESSION["check_login"] !== true) {
+    header("Location: login.php");
+    exit;
+}
+?>
+<?php
 $current_page = basename($_SERVER['PHP_SELF']);
 ?>
 
@@ -133,7 +141,7 @@ $current_page = basename($_SERVER['PHP_SELF']);
                         <li class="nav-item">
                             <a href="timetable.php" class="nav-link <?= ($current_page == 'timetable.php') ? 'active' : 'text-white'; ?>">
                                 <i class="bi bi-table me-2 text-info"></i>
-                                 Time Table
+                                Time Table
                             </a>
                         </li>
 
