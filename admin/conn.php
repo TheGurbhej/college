@@ -3,7 +3,7 @@
 
 $servername = "localhost";
 $user = "root";
-$pass = null;
+$pass = "";
 $dbname = "college";
 
 try {

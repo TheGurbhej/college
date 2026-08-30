@@ -1,0 +1,668 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>D.A.V. College | Sri Ganganagar</title>
+    <!-- Google Fonts & FontAwesome for modern typography and icons -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        :root {
+            --primary: #0f2b5c;     /* Trustworthy Navy Blue */
+            --accent: #d4af37;      /* Premium Gold */
+            --accent-hover: #bda02a;
+            --text-dark: #1e293b;   /* Slate Dark */
+            --text-light: #64748b;  /* Cool Gray Muted */
+            --bg-light: #f8fafc;    /* Soft Off-White */
+            --white: #ffffff;
+            --shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+            --transition: all 0.3s ease;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Inter', sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-light);
+            color: var(--text-dark);
+            line-height: 1.6;
+        }
+
+        /* Top Header Info Bar */
+        .top-bar {
+            background-color: var(--primary);
+            color: var(--white);
+            font-size: 0.85rem;
+            padding: 8px 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .top-bar-contact span {
+            margin-right: 20px;
+        }
+
+        .top-bar-contact i {
+            color: var(--accent);
+            margin-right: 6px;
+        }
+
+        /* Main Navigation */
+        header {
+            background-color: var(--white);
+            box-shadow: var(--shadow);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            padding: 15px 5%;
+        }
+
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo-area {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .logo-placeholder {
+            width: 55px;
+            height: 55px;
+            background: linear-gradient(135deg, var(--primary), #1e40af);
+            color: var(--white);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 1.2rem;
+            box-shadow: 0 4px 10px rgba(15, 43, 92, 0.2);
+        }
+
+        .logo-text h1 {
+            font-size: 1.4rem;
+            color: var(--primary);
+            font-weight: 700;
+            letter-spacing: -0.5px;
+        }
+
+        .logo-text p {
+            font-size: 0.8rem;
+            color: var(--text-light);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .nav-menu {
+            display: flex;
+            list-style: none;
+            gap: 25px;
+            align-items: center;
+        }
+
+        .nav-item a {
+            text-decoration: none;
+            color: var(--text-dark);
+            font-weight: 500;
+            font-size: 0.95rem;
+            transition: var(--transition);
+        }
+
+        .nav-item a:hover {
+            color: var(--primary);
+        }
+
+        .btn-apply {
+            background-color: var(--accent);
+            color: var(--primary) !important;
+            padding: 10px 22px;
+            border-radius: 6px;
+            font-weight: 600 !important;
+            box-shadow: 0 4px 12px rgba(212, 175, 55, 0.2);
+        }
+
+        .btn-apply:hover {
+            background-color: var(--accent-hover);
+            transform: translateY(-2px);
+        }
+
+        /* Notice / Ticker Section */
+        .ticker-wrap {
+            background-color: #f1f5f9;
+            padding: 12px 5%;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            border-bottom: 1px solid #e2e8f0;
+        }
+
+        .ticker-label {
+            background-color: #ef4444;
+            color: var(--white);
+            padding: 4px 12px;
+            border-radius: 4px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0% { opacity: 0.8; }
+            50% { opacity: 1; }
+            100% { opacity: 0.8; }
+        }
+
+        .ticker-content {
+            font-size: 0.9rem;
+            color: var(--text-dark);
+            font-weight: 500;
+        }
+
+        /* Hero / Spotlight Section */
+        .hero {
+            background: linear-gradient(rgba(15, 43, 92, 0.85), rgba(15, 43, 92, 0.85)), url('https://images.unsplash.com/photo-1523050854058-8df90110c9f1?auto=format&fit=crop&q=80&w=1200') no-repeat center center/cover;
+            color: var(--white);
+            padding: 100px 5%;
+            text-align: center;
+        }
+
+        .hero h2 {
+            font-size: 3rem;
+            font-weight: 700;
+            margin-bottom: 15px;
+            letter-spacing: -1px;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            max-width: 700px;
+            margin: 0 auto 30px auto;
+            opacity: 0.9;
+        }
+
+        .hero-btn {
+            display: inline-block;
+            background-color: var(--white);
+            color: var(--primary);
+            padding: 14px 30px;
+            border-radius: 6px;
+            text-decoration: none;
+            font-weight: 600;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.15);
+            transition: var(--transition);
+        }
+
+        .hero-btn:hover {
+            transform: translateY(-2px);
+            background-color: var(--bg-light);
+        }
+
+        /* Main Content Container Layout */
+        .container {
+            max-width: 1200px;
+            margin: 60px auto;
+            padding: 0 20px;
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 40px;
+        }
+
+        @media (max-width: 968px) {
+            .container {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* About Section */
+        .about-section h3 {
+            font-size: 1.8rem;
+            color: var(--primary);
+            margin-bottom: 20px;
+            position: relative;
+            padding-bottom: 10px;
+        }
+
+        .about-section h3::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            width: 50px;
+            height: 3px;
+            background-color: var(--accent);
+        }
+
+        .about-section p {
+            color: var(--text-light);
+            margin-bottom: 25px;
+            font-size: 1.05rem;
+        }
+
+        .motto-card {
+            background-color: var(--white);
+            border-left: 4px solid var(--accent);
+            padding: 20px;
+            border-radius: 0 8px 8px 0;
+            box-shadow: var(--shadow);
+            margin-bottom: 30px;
+        }
+
+        .motto-card h4 {
+            color: var(--primary);
+            font-size: 1.1rem;
+            margin-bottom: 5px;
+        }
+
+        .motto-card p {
+            margin-bottom: 0;
+            font-style: italic;
+        }
+
+        /* Stream/Faculties Cards Grid */
+        .faculties-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin-top: 30px;
+        }
+
+        .faculty-card {
+            background: var(--white);
+            padding: 25px;
+            border-radius: 8px;
+            text-align: center;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+            border: 1px solid #f1f5f9;
+        }
+
+        .faculty-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--accent);
+        }
+
+        .faculty-card i {
+            font-size: 2rem;
+            color: var(--primary);
+            margin-bottom: 15px;
+        }
+
+        .faculty-card h4 {
+            font-size: 1.1rem;
+            font-weight: 600;
+        }
+
+        /* Right Sidebar Component */
+        .sidebar-widget {
+            background-color: var(--white);
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: var(--shadow);
+            margin-bottom: 30px;
+        }
+
+        .sidebar-widget h3 {
+            font-size: 1.3rem;
+            color: var(--primary);
+            margin-bottom: 20px;
+            border-bottom: 2px solid var(--bg-light);
+            padding-bottom: 10px;
+        }
+
+        .widget-list {
+            list-style: none;
+        }
+
+        .widget-list li {
+            padding: 12px 0;
+            border-bottom: 1px dashed #e2e8f0;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .widget-list li:last-child {
+            border-bottom: none;
+        }
+
+        .widget-list a {
+            text-decoration: none;
+            color: var(--text-dark);
+            font-weight: 500;
+            transition: var(--transition);
+            font-size: 0.95rem;
+        }
+
+        .widget-list a:hover {
+            color: var(--primary);
+            padding-left: 5px;
+        }
+
+        .widget-list i {
+            color: var(--accent);
+            font-size: 0.85rem;
+        }
+
+        /* Testimonials Slider Area */
+        .testimonials-section {
+            background-color: #f1f5f9;
+            padding: 60px 5%;
+            text-align: center;
+        }
+
+        .testimonials-section h3 {
+            font-size: 1.8rem;
+            color: var(--primary);
+            margin-bottom: 40px;
+        }
+
+        .testimonial-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .testimonial-card {
+            background: var(--white);
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: var(--shadow);
+            text-align: left;
+            position: relative;
+        }
+
+        .testimonial-card::before {
+            content: "\f10d";
+            font-family: "Font Awesome 6 Free";
+            font-weight: 900;
+            position: absolute;
+            top: 20px;
+            right: 25px;
+            color: #e2e8f0;
+            font-size: 2rem;
+        }
+
+        .testimonial-card p {
+            color: var(--text-light);
+            font-style: italic;
+            margin-bottom: 20px;
+            font-size: 0.95rem;
+        }
+
+        .student-info {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .avatar-placeholder {
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            background-color: #cbd5e1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--white);
+            font-weight: 600;
+        }
+
+        .student-info h4 {
+            font-size: 0.95rem;
+            color: var(--primary);
+        }
+
+        .student-info span {
+            font-size: 0.8rem;
+            color: var(--text-light);
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--primary);
+            color: var(--white);
+            padding: 60px 5% 20px 5%;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 40px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .footer-col h4 {
+            color: var(--accent);
+            font-size: 1.1rem;
+            margin-bottom: 20px;
+            font-weight: 600;
+        }
+
+        .footer-col p, .footer-col linear-gradient {
+            font-size: 0.9rem;
+            opacity: 0.8;
+            margin-bottom: 10px;
+        }
+
+        .footer-links {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 10px;
+        }
+
+        .footer-links a {
+            color: var(--white);
+            opacity: 0.8;
+            text-decoration: none;
+            font-size: 0.9rem;
+            transition: var(--transition);
+        }
+
+        .footer-links a:hover {
+            opacity: 1;
+            color: var(--accent);
+            padding-left: 5px;
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 40px;
+            margin-top: 40px;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            font-size: 0.85rem;
+            opacity: 0.7;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Top Contact Strip -->
+    <div class="top-bar">
+        <div class="top-bar-contact">
+            <span><i class="fa-solid fa-phone"></i> +91-0154-2440756</span>
+            <span><i class="fa-solid fa-envelope"></i> davcollege.sgnr@gmail.com</span>
+        </div>
+        <div class="top-bar-social">
+            <span style="opacity: 0.8;">Language: English</span>
+        </div>
+    </div>
+
+    <!-- Navigation Header -->
+    <header>
+        <div class="navbar">
+            <div class="logo-area">
+                <div class="logo-placeholder">DAV</div>
+                <div class="logo-text">
+                    <h1>D.A.V. College</h1>
+                    <p>Sri Ganganagar (Raj.)</p>
+                </div>
+            </div>
+            <ul class="nav-menu">
+                <li class="nav-item"><a href="#">Home</a></li>
+                <li class="nav-item"><a href="#">About</a></li>
+                <li class="nav-item"><a href="#">Faculty</a></li>
+                <li class="nav-item"><a href="#">Activities</a></li>
+                <li class="nav-item"><a href="#">Distance Ed</a></li>
+                <li class="nav-item"><a href="#" class="btn-apply">Apply Online</a></li>
+            </ul>
+        </div>
+    </header>
+
+    <!-- Hot updates Ticker banner -->
+    <div class="ticker-wrap">
+        <div class="ticker-label">Latest</div>
+        <div class="ticker-content">
+            <i class="fa-solid fa-circle-exclamation" style="color: #ef4444; margin-right: 5px;"></i> 
+            Admission Open for Session 2026-27. Online Application Forms are live.
+        </div>
+    </div>
+
+    <!-- Main Hero Banner Area -->
+    <section class="hero">
+        <h2>Education for Leadership & Development</h2>
+        <p>Providing a highly conducive academic ecosystem that empowers students to stand out, excel, and lead across diverse global sectors.</p>
+        <a href="#" class="hero-btn">Explore Campus Infrastructure</a>
+    </section>
+
+    <!-- Split content layout (Main & Sidebar info) -->
+    <main class="container">
+        
+        <!-- Left Column: About & Core offering -->
+        <div class="about-section">
+            <h3>Welcome to DAV College</h3>
+            <p>DAV College is a premier, well-organized, and unconditionally dedicated academic institution serving the pursuit of excellent quality education. Our curriculum structure provides a balanced atmosphere blending academic rigidity with real-world exposure.</p>
+            
+            <div class="motto-card">
+                <h4>Our Core Slogan</h4>
+                <p>"Education for Leadership & Development"</p>
+            </div>
+
+            <h3 style="margin-top: 40px;">Academic Faculties</h3>
+            <div class="faculties-grid">
+                <div class="faculty-card">
+                    <i class="fa-solid fa-flask-vial"></i>
+                    <h4>Faculty of Science</h4>
+                </div>
+                <div class="faculty-card">
+                    <i class="fa-solid fa-chart-line"></i>
+                    <h4>Faculty of Commerce</h4>
+                </div>
+                <div class="faculty-card">
+                    <i class="fa-solid fa-book-open"></i>
+                    <h4>Faculty of Humanities</h4>
+                </div>
+            </div>
+        </div>
+
+        <!-- Right Column: Sidebar Quicklinks & Portals -->
+        <aside>
+            <div class="sidebar-widget">
+                <h3>Quick Information</h3>
+                <ul class="widget-list">
+                    <li><i class="fa-solid fa-chevron-right"></i><a href="#">Central Library Portal</a></li>
+                    <li><i class="fa-solid fa-chevron-right"></i><a href="#">Hostel Accommodations</a></li>
+                    <li><i class="fa-solid fa-chevron-right"></i><a href="#">Photo & Video Gallery</a></li>
+                    <li><i class="fa-solid fa-chevron-right"></i><a href="#">Student Login Desk</a></li>
+                    <li><i class="fa-solid fa-chevron-right"></i><a href="#">Admin & Web-Mail Login</a></li>
+                </ul>
+            </div>
+
+            <div class="sidebar-widget">
+                <h3>Campus Activities</h3>
+                <ul class="widget-list">
+                    <li><i class="fa-solid fa-trophy"></i><a href="#">Games & Sports Meet</a></li>
+                    <li><i class="fa-solid fa-shield-halved"></i><a href="#">National Cadet Corps (NCC)</a></li>
+                    <li><i class="fa-solid fa-hands-holding"></i><a href="#">National Service Scheme (NSS)</a></li>
+                    <li><i class="fa-solid fa-compass"></i><a href="#">Rover Scout Unit</a></li>
+                </ul>
+            </div>
+        </aside>
+    </main>
+
+    <!-- Student Testimonials Section -->
+    <section class="testimonials-section">
+        <h3>What Our Students Say</h3>
+        <div class="testimonial-grid">
+            <div class="testimonial-card">
+                <p>"I am completely thankful to all the teachers who are always ready to help us in any situation. They are truly god-gifted guides for us."</p>
+                <div class="student-info">
+                    <div class="avatar-placeholder">SN</div>
+                    <div>
+                        <h4>Sezal Nagpal</h4>
+                        <span>Student</span>
+                    </div>
+                </div>
+            </div>
+            <div class="testimonial-card">
+                <p>"The way teachers instruct and support us is excellent. The command of our future feels completely secure in their capable hands."</p>
+                <div class="student-info">
+                    <div class="avatar-placeholder">G</div>
+                    <div>
+                        <h4>Gaurav</h4>
+                        <span>Student</span>
+                    </div>
+                </div>
+            </div>
+            <div class="testimonial-card">
+                <p>"Starting my journey here made me deeply admire the scale of the faculty. I'm incredibly glad to be a part of the DAV legacy."</p>
+                <div class="student-info">
+                    <div class="avatar-placeholder">M</div>
+                    <div>
+                        <h4>Mansi</h4>
+                        <span>Student</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer component -->
+    <footer>
+        <div class="footer-grid">
+            <div class="footer-col">
+                <h4>Get In Touch</h4>
+                <p><i class="fa-solid fa-location-dot" style="color: var(--accent); margin-right: 8px;"></i> Opp. Maharaja Ganga Singh Stadium, Hindumal Kot Road, Sriganganagar (Raj.)</p>
+                <p><i class="fa-solid fa-envelope" style="color: var(--accent); margin-right: 8px;"></i> davcollege.sgnr@gmail.com</p>
+            </div>
+            <div class="footer-col">
+                <h4>Quick Links</h4>
+                <ul class="footer-links">
+                    <li><a href="#">Home Dashboard</a></li>
+                    <li><a href="#">About Our Board</a></li>
+                    <li><a href="#">Distance Education Hub</a></li>
+                    <li><a href="#">Contact Helpdesk</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Distance Education</h4>
+                <ul class="footer-links">
+                    <li><a href="#">IGNOU Portal</a></li>
+                    <li><a href="#">VMOU Center</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            &copy; 2026 D.A.V. College, Sri Ganganagar. All Rights Reserved. Rebuilt for Modern Web Layouts.
+        </div>
+    </footer>
+
+</body>
+</html>

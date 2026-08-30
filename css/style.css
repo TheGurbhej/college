@@ -1,0 +1,268 @@
+ body {
+     scroll-behavior: smooth;
+ }
+ main{
+    padding-top: 90px;
+ }
+
+ .hero {
+     background: linear-gradient(rgba(0, 0, 0, .6), rgba(0, 0, 0, .6)),
+         url() center/cover;
+     height: 90vh;
+     color: #fff;
+     display: flex;
+     align-items: center;
+ }
+
+ .section-title {
+     position: relative;
+     display: inline-block;
+     margin-bottom: 20px;
+ }
+
+ .section-title::after {
+     content: '';
+     width: 70%;
+     height: 4px;
+     background: #0d6efd;
+     position: absolute;
+     left: 15%;
+     bottom: -10px;
+ }
+
+ .course-card:hover {
+     transform: translateY(-8px);
+     transition: .3s;
+ }
+
+ footer {
+     background: #212529;
+     color: #fff;
+ }
+
+ body {
+     background: #f8f9fa;
+ }
+
+ .hero {
+     background: linear-gradient(rgba(0, 0, 0, .65), rgba(0, 0, 0, .65)),
+          url("img\high-level-description-a-wide-angle-arch_kpWTm3AoWAu6_xYDxvKoFw_kLTzOXOXTzqNJolieEm12g.jpg") center/cover;
+     color: white;
+     padding: 100px 0;
+ }
+
+ .department-card {
+     transition: .3s;
+     border: none;
+ }
+
+ .department-card:hover {
+     transform: translateY(-8px);
+     box-shadow: 0 10px 25px rgba(0, 0, 0, .2);
+ }
+
+ .icon {
+     width: 80px;
+     height: 80px;
+     border-radius: 50%;
+     display: flex;
+     align-items: center;
+     justify-content: center;
+     margin: auto;
+     font-size: 35px;
+     background: #0d6efd;
+     color: #fff;
+ }  
+
+ .top-bar{
+    background:#212529;
+    color:#fff;
+    height:35px;
+    overflow:hidden;
+    position:relative;
+    display:flex;
+    align-items:center;
+}
+
+.moving-text{
+    white-space:nowrap;
+    position:absolute;
+    animation: moveText 10s linear infinite;
+}
+
+@keyframes moveText{
+    0%{
+        transform: translateX(-100%);
+    }
+    100%{
+        transform: translateX(100vw);
+    }
+}
+
+
+#carouselExampleCaptions {
+    height: 94vh;
+}
+
+#carouselExampleCaptions .carousel-item img {
+    width: 100%;
+    height: 94vh;
+    object-fit: cover;  
+}
+
+
+
+
+.carousel-item {
+    position: relative;
+}
+
+.carousel-item img {
+    height: 90vh;      /* Image height */
+    object-fit: cover;
+}
+
+.custom-caption {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    bottom: auto;
+    right: auto;
+    width: 80%;
+    text-align: center;
+    z-index: 2;
+}
+
+.custom-caption h1 {
+    font-size: 3.5rem;
+    font-weight: 700;
+    color: #fff;
+    text-shadow: 2px 2px 10px rgba(0,0,0,0.8);
+}
+
+.custom-caption p {
+    font-size: 1.2rem;
+    color: #fff;
+    text-shadow: 1px 1px 8px rgba(0,0,0,0.8);
+}
+
+/* Dark overlay for better text visibility */
+.carousel-item::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.212);
+    z-index: 1;
+}
+
+.custom-caption {
+    z-index: 2;
+}
+
+body.modal-open {
+    overflow: auto !important;
+    padding-right: 0 !important;
+}   
+
+
+
+
+ .top-bar {
+
+            padding-top: 4px;
+            width: 100%;
+            height: 45px;
+            overflow: hidden;
+            font-size: 20px;
+            background: #dc3545;
+            color: #fff;
+        }
+
+        .moving-text {
+            display: inline-block;
+            white-space: nowrap;
+            padding-left: 100%;
+            animation: marquee 13s linear infinite;
+        }
+
+        @keyframes marquee {
+            0% {
+                transform: translateX(0);
+            }
+
+            100% {
+                transform: translateX(-100%);
+            }
+        }
+        
+
+.department-card img {
+    width: 100%;
+    height: 240px;      /* Sab images ki same height */
+    object-fit: cover;  /* Stretch nahi hogi */
+    object-position: center;
+    border-radius: 8px 8px 0 0;
+    transition: 0.4s;
+}
+
+.department-card:hover img {
+    transform: scale(1.05);
+}
+
+.department-card {
+    overflow: hidden;
+    border-radius: 10px;
+}
+
+.campus-card img {
+    width: 100%;
+    height: 240px;      /* Sab images ki same height */
+    object-fit: cover;  /* Stretch nahi hogi */
+    object-position: center;
+    border-radius: 8px 8px 0 0;
+    transition: 0.4s;
+}
+
+.campus-card:hover img {
+    transform: scale(1.05);
+}
+
+.campus-card {
+    overflow: hidden;
+    border-radius: 10px;
+}
+.faculty-card{
+    overflow:hidden;
+    border-radius:12px;
+    transition:.4s;
+}
+
+.faculty-card:hover{
+    transform:translateY(-10px);
+    box-shadow:0 18px 35px rgba(0,0,0,.15)!important;
+}
+
+.faculty-img{
+    width:100%;
+    height:320px;
+    object-fit:cover;
+    transition:.5s;
+}
+
+.faculty-card:hover .faculty-img{
+    transform:scale(1.08);
+}
+
+.faculty-card .badge{
+    font-size:.8rem;
+    font-weight:500;
+}
+
+.faculty-card a{
+    transition:.3s;
+}
+
+.faculty-card a:hover{
+    transform:translateY(-3px);
+}

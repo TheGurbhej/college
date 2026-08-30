@@ -1,48 +1,190 @@
     @import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
 
 
-body {
-    font-family: 'Poppins', sans-serif;
-    margin: 0;
-    background-repeat: no-repeat;
-    background-position: center bottom;
-    background-size: cover;
-}
+    body {
+        font-family: 'Poppins', sans-serif;
+        margin: 0;
+        background-repeat: no-repeat;
+        background-position: center bottom;
+        background-size: cover;
+    }
+
+    .wrapper {
+        align-items: stretch;
+        display: flex;
+        width: 100%;
+    }
+
+    #sidebar {
+        max-width: 300px;
+        min-width: 300px;
+        transition: all 0.35s ease-in-out;
+        z-index: 1111;
+    }
 
 
+    #sidebar.collapsed {
+        margin-left: -300px;
+    }
+    /* #sidebar.collapsed {
+        margin-left: -264px; old  
+    } */
 
-.wrapper {
-    align-items: stretch;
-    display: flex;
-    width: 100%;
-}
+    /* .main {
+        display: flex;
+        flex-direction: column;
+        background-color: #2d2d34;
+        min-height: 100vh;
+        width: 100%;
+        overflow: hidden;
+        transition: all 0.35s ease-in-out;
+    } */
 
-#sidebar {
-    max-width: 264px;
-    min-width: 264px;
-    transition: all 0.35s ease-in-out;
-    z-index: 1111;
-}
+    /* 1. Main Content Section CSS */
+    .main {
+        display: flex;
+        flex-direction: column;
+        background-color: #2d2d34;
+        min-height: 100vh;
+        width: 100%;
+        overflow-x: hidden;
+        /* Left-Right scroll hide karne ke liye */
+        overflow-y: auto;
+        /* Up-Down scroll active karne ke liye */
+        transition: all 0.35s ease-in-out;
+    }
+
+    /* 2. Global Custom Scrollbar (Sidebar + Main + Whole Page) */
+    ::-webkit-scrollbar {
+        width: 8px;
+        /* Scrollbar ki width */
+        height: 8px;
+        /* Horizontal scrollbar ki height (agar aaye toh) */
+    }
+
+    ::-webkit-scrollbar-track {
+        background: #2d2d34;
+        /* Aapke .main ka background color */
+    }
+
+    ::-webkit-scrollbar-thumb {
+        background: #495057;
+        /* Dark grey scrollbar thumb */
+        border-radius: 10px;
+    }
+
+    ::-webkit-scrollbar-thumb:hover {
+        background: #0d6efd;
+        /* Hover karne par blue highlight */
+    }
+
+    /* Firefox Compatibility */
+    * {
+        scrollbar-width: thin;
+        scrollbar-color: #495057 #2d2d34;
+    }
+
+    .bg-hlka-dark {
+        background-color: #2d2d34;
+
+    }
+
+    .form-control::placeholder {
+        color: #fff;
+        opacity: 1;
+    }
+
+    html,
+    body {
+        height: 100%;
+        overflow: hidden;
+        /* Main body ka default scroll band karne ke liye */
+    }
+
+    .wrapper {
+        display: flex;
+        height: 100vh;
+        width: 100vw;
+    }
+
+    #sidebar {
+        height: 100vh;
+        position: sticky;
+        top: 0;
+        z-index: 1020;
+    }
+
+    .main {
+        flex: 1;
+        height: 100vh;
+        overflow-y: auto;
+        /* Sirf is main area me scrolling on rahegi */
+        display: flex;
+        flex-direction: column;
+    }
+
+    .navbar {
+        position: sticky;
+        top: 0;
+        z-index: 1000;
+    }
+
+    div.dt-search input {
+        border: 2px solid white !important;
+        color: white !important;
+        border-radius: 10px !important;
+    }
+
+    div.dt-search label {
+        font-size: 16px;
+        margin-right: 5px !important;
+        color: white !important;
+    }
+
+    .dt-paging .dt-paging-button {
+        color: white !important;
+
+    }
+
+    .dt-paging .dt-paging-button.current {
+        background: white !important;
+    }
+
+    .dt-paging .dt-paging-button:hover {
+        background: white !important;
+    }
+
+    .dt-search input::placeholder {
+        color: white !important;
+    }
 
 
-#sidebar.collapsed {
-    margin-left: -264px;
-}
+    /* Sidebar ki scroll bar  */
+    /* Custom Scrollbar for Sidebar Menu */
+    #sidebar .overflow-y-auto::-webkit-scrollbar {
+        width: 6px;
+        /* Scrollbar ki width (patla dikhane ke liye) */
+    }
 
-.main {
-    display: flex;
-    flex-direction: column;
-    background-color: #2d2d34;
-    min-height: 100vh;
-    width: 100%;
-    overflow: hidden;
-    transition: all 0.35s ease-in-out;
-}
-.bg-hlka-dark{
-    background-color: #2d2d34;
-    
-}
-.form-control::placeholder{
-    color: #fff;
-    opacity: 1;
-}
+    #sidebar .overflow-y-auto::-webkit-scrollbar-track {
+        background: #212529;
+        /* Background track (bg-dark ke color se match) */
+        border-radius: 10px;
+    }
+
+    #sidebar .overflow-y-auto::-webkit-scrollbar-thumb {
+        background: #495057;
+        /* Scroll handle bar ka color */
+        border-radius: 10px;
+    }
+
+    #sidebar .overflow-y-auto::-webkit-scrollbar-thumb:hover {
+        background: #0d6efd;
+        /* Hover karne par blue accent highlight */
+    }
+
+    /* Firefox Support */
+    #sidebar .overflow-y-auto {
+        scrollbar-width: thin;
+        scrollbar-color: #495057 #212529;
+    }

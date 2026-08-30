@@ -1,0 +1,202 @@
+<?php
+include "header.php";
+include "conn.php";
+
+if (isset($_POST['addTeacher'])) {
+
+    $name = $_POST['name'];
+    $department = $_POST['department'];
+    $qualification = $_POST['qualification'];
+    $designation = $_POST['designation'];
+    $date = $_POST['date'];
+    $salary = $_POST['salary'];
+    $address = $_POST['address'];
+
+    $sql = "INSERT INTO teacher
+            (name, department, qualification, designation, date, salary, address)
+            VALUES
+            (:name, :department, :qualification, :designation, :date, :salary, :address)";
+
+    $stmt = $conn->prepare($sql);
+
+    $stmt->execute([
+        ':name' => $name,
+        ':department' => $department,
+        ':qualification' => $qualification,
+        ':designation' => $designation,
+        ':date' => $date,
+        ':salary' => $salary,
+        ':address' => $address
+    ]);
+
+    echo "Teacher Added Successfully!";
+}
+?>
+<?php
+$sql = "SELECT * FROM teacher";
+$stmt = $conn->prepare($sql);
+$stmt->execute();
+
+$teachers = $stmt->fetchAll(PDO::FETCH_ASSOC);
+?>
+<main>
+    <div class="container">
+        <h1 class="text-white fw-bold p-3">Teachers</h1>
+    </div>
+    <div class="container">
+        <div class="bg-dark rounded-4 m-3 p-3">
+            <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link active text-white" id="pills-home-tab" data-bs-toggle="pill" data-bs-target="#pills-home" type="button" role="tab" aria-controls="pills-home" aria-selected="true">Add Teacher</button>
+                </li>
+            </ul>
+            <div class="tab-content" id="pills-tabContent">
+                <div class="tab-pane fade show active" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab" tabindex="0">
+                    <div class="text-center pb-5">
+                        <button type="button" class="btn btn-light w-25 fw-bold  me-3" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                            <span class="fs-4">
+                                <i class="bi bi-person-fill-add fs-2 "></i>
+                                Add Teacher</span>
+                        </button>
+                        <div class="text-white">
+                            <table class="table table-bordered   table-sm   3 table-striped" id="studentTable">
+                                <thead>
+                                    <tr>
+                                        <th>ID</th>
+                                        <th>Name</th>
+                                        <th>Department</th>
+                                        <th>Qualification</th>
+                                        <th>Designation</th>
+                                        <th>Date</th>
+                                        <th>Salary</th>
+                                        <th>Address</th>
+                                        <th>Action</th>
+
+                                    </tr>
+                                </thead>
+                                <tbody>
+
+                                    <?php
+                                    $stmt = $conn->prepare("SELECT * FROM teacher");
+                                    $stmt->execute();
+
+                                    while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
+                                    ?>
+
+                                        <tr>
+                                            <td><?= $row['id']; ?></td>
+                                            <td><?= $row['name']; ?></td>
+                                            <td><?= $row['department']; ?></td>
+                                            <td><?= $row['qualification']; ?></td>
+                                            <td><?= $row['designation']; ?></td>
+                                            <td><?= $row['date']; ?></td>
+                                            <td><?= $row['salary']; ?></td>
+                                            <td><?= $row['address']; ?></td>
+                                            <td>
+                                                <button class="btn btn-primary">Edit</button>
+                                                <button class="btn btn-primary">Delete</button>
+                                        </td>
+
+                                        </tr>
+
+                                    <?php } ?>
+
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            
+
+            </div>
+
+        </div>
+    </div>
+
+
+
+
+
+
+
+
+
+    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="exampleModalLabel">Fill Form To Add Teacher</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form class="row g-3" method="POST">
+
+                        <div class="col-md-6">
+                            <label class="form-label">Full Name</label>
+                            <input type="text" class="form-control" id="teacherName" name="name" placeholder="Enter Teacher Name">
+                        </div>
+
+                        <div class="col-md-6">
+                            <label class="form-label">Department</label>
+                            <select class="form-select" id="department" name="department">
+                                <option selected disabled>Select Department</option>
+                                <option>Computer Science</option>
+                                <option>Information Technology</option>
+                                <option>Electronics</option>
+                                <option>Mechanical</option>
+                                <option>Civil</option>
+                                <option>Electrical</option>
+                                <option>Commerce</option>
+                                <option>Mathematics</option>
+                                <option>Physics</option>
+                                <option>Chemistry</option>
+                            </select>
+                        </div>
+
+                        <div class="col-md-6">
+                            <label class="form-label">Qualification</label>
+                            <input type="text" class="form-control" id="qualification" name="qualification">
+                        </div>
+
+                        <div class="col-md-6">
+                            <label class="form-label">Designation</label>
+                            <select class="form-select" id="designation" name="designation">
+                                <option selected disabled>Select Designation</option>
+                                <option>Assistant Professor</option>
+                                <option>Associate Professor</option>
+                                <option>Professor</option>
+                                <option>Head of Department</option>
+                                <option>Lecturer</option>
+                            </select>
+                        </div>
+
+                        <div class="col-md-6">
+                            <label class="form-label">Date of Joining</label>
+                            <input type="date" class="form-control" id="joiningDate" name="date">
+                        </div>
+
+                        <div class="col-md-6">
+                            <label class="form-label">Salary</label>
+                            <input type="number" class="form-control" id="salary" name="salary">
+                        </div>
+
+                        <div class="col-12">
+                            <label class="form-label">Address</label>
+                            <textarea class="form-control" id="address" name="address"></textarea>
+                        </div>
+
+                        <div class="col-12 text-end">
+                            <button type="reset" class="btn btn-secondary">Reset</button>
+                            <button type="submit" name="addTeacher" class="btn btn-primary">Add Teacher</button>
+                        </div>
+
+                    </form>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</main>
+<?php
+include "footer.php";
+?>

@@ -1,0 +1,834 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>D.A.V. College, Sri Ganganagar</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* Modern Reset & Root Styling */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        :root {
+            --primary: #0f3460;
+            --primary-light: #1a4d8c;
+            --accent: #ff9f43;
+            --text-dark: #2d3436;
+            --text-light: #636e72;
+            --bg-light: #f8f9fa;
+            --white: #ffffff;
+            --transition: all 0.3s ease;
+        }
+
+        body {
+            color: var(--text-dark);
+            background-color: var(--white);
+            line-height: 1.6;
+        }
+
+        /* Top Bar */
+        .top-bar {
+            background-color: var(--primary);
+            color: var(--white);
+            font-size: 0.85rem;
+            padding: 8px 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 2px solid var(--accent);
+        }
+
+        .top-contact span {
+            margin-right: 20px;
+        }
+
+        .top-contact i {
+            color: var(--accent);
+            margin-right: 5px;
+        }
+
+        .top-links a {
+            color: var(--white);
+            text-decoration: none;
+            margin-left: 15px;
+            transition: var(--transition);
+        }
+
+        .top-links a:hover {
+            color: var(--accent);
+        }
+
+        /* Header Navigation */
+        header {
+            background-color: var(--white);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 5%;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .logo-area {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .logo-icon {
+            background: linear-gradient(135deg, var(--primary), var(--primary-light));
+            color: var(--white);
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            font-weight: bold;
+            box-shadow: 0 4px 10px rgba(15, 52, 96, 0.3);
+        }
+
+        .logo-text h1 {
+            font-size: 1.35rem;
+            color: var(--primary);
+            font-weight: 700;
+            letter-spacing: 0.5px;
+        }
+
+        .logo-text p {
+            font-size: 0.75rem;
+            color: var(--text-light);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 5px;
+        }
+
+        .dropdown {
+            position: relative;
+        }
+
+        nav ul li a {
+            padding: 10px 16px;
+            color: var(--text-dark);
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.95rem;
+            border-radius: 4px;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            transition: var(--transition);
+        }
+
+        nav ul li a:hover, .dropdown:hover > a {
+            background-color: rgba(15, 52, 96, 0.05);
+            color: var(--primary);
+        }
+
+        .dropdown-menu {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            background-color: var(--white);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+            border-radius: 6px;
+            min-width: 220px;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(15px);
+            transition: var(--transition);
+            padding: 10px 0;
+        }
+
+        .dropdown:hover .dropdown-menu {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+
+        .dropdown-menu li a {
+            padding: 10px 20px;
+            font-weight: 500;
+            font-size: 0.9rem;
+            border-radius: 0;
+        }
+
+        .dropdown-menu li a:hover {
+            background-color: var(--bg-light);
+            color: var(--primary);
+            padding-left: 25px;
+        }
+
+        .btn-apply {
+            background-color: var(--accent);
+            color: var(--white) !important;
+            box-shadow: 0 4px 10px rgba(255, 159, 67, 0.3);
+        }
+
+        .btn-apply:hover {
+            background-color: #e68a2e !important;
+            color: var(--white) !important;
+            transform: translateY(-2px);
+        }
+
+        /* Hero Showcase Section */
+        .hero {
+            background: linear-gradient(rgba(15, 52, 96, 0.85), rgba(26, 77, 140, 0.85)), url('https://images.unsplash.com/photo-1541339907198-e08756dedf3f?auto=format&fit=crop&w=1920&q=80');
+            background-size: cover;
+            background-position: center;
+            color: var(--white);
+            padding: 120px 5% 100px 5%;
+            text-align: center;
+        }
+
+        .hero-content {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .hero h2 {
+            font-size: 3rem;
+            font-weight: 800;
+            margin-bottom: 20px;
+            line-height: 1.2;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            margin-bottom: 35px;
+            opacity: 0.9;
+        }
+
+        .hero-badge {
+            background-color: var(--accent);
+            color: var(--white);
+            padding: 8px 20px;
+            border-radius: 50px;
+            font-weight: 700;
+            display: inline-block;
+            margin-bottom: 20px;
+            text-transform: uppercase;
+            font-size: 0.85rem;
+            letter-spacing: 1px;
+        }
+
+        /* Ticker / Notice Bar */
+        .ticker-wrap {
+            background-color: #e1f0ff;
+            color: var(--primary);
+            padding: 12px 5%;
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            font-weight: 600;
+        }
+
+        .ticker-title {
+            background: var(--primary);
+            color: var(--white);
+            padding: 4px 12px;
+            border-radius: 4px;
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            white-space: nowrap;
+        }
+
+        .ticker-text {
+            white-space: nowrap;
+            overflow: hidden;
+            animation: ticker 25s linear infinite;
+        }
+
+        @keyframes ticker {
+            0% { transform: translate3d(100%, 0, 0); }
+            100% { transform: translate3d(-100%, 0, 0); }
+        }
+
+        /* Two-Column Core Layout (About & Notices) */
+        .main-grid {
+            max-width: 1400px;
+            margin: 60px auto;
+            padding: 0 5%;
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 50px;
+        }
+
+        .section-title {
+            font-size: 2rem;
+            color: var(--primary);
+            margin-bottom: 25px;
+            position: relative;
+            padding-bottom: 10px;
+            font-weight: 700;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            width: 60px;
+            height: 4px;
+            background-color: var(--accent);
+            border-radius: 2px;
+        }
+
+        .about-box p {
+            color: var(--text-light);
+            margin-bottom: 20px;
+            font-size: 1.05rem;
+        }
+
+        .slogan-card {
+            background: linear-gradient(135deg, var(--primary), var(--primary-light));
+            color: var(--white);
+            padding: 30px;
+            border-radius: 12px;
+            margin-top: 30px;
+            border-left: 6px solid var(--accent);
+        }
+
+        .slogan-card h4 {
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: var(--accent);
+            margin-bottom: 8px;
+        }
+
+        .slogan-card p {
+            color: var(--white);
+            font-size: 1.4rem;
+            font-style: italic;
+            font-weight: 600;
+            margin-bottom: 0;
+        }
+
+        /* Update Panels Side Panel */
+        .panel {
+            background-color: var(--bg-light);
+            border-radius: 12px;
+            padding: 30px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.02);
+            border: 1px solid #eef2f5;
+        }
+
+        .notice-list {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .notice-item {
+            background-color: var(--white);
+            padding: 15px;
+            border-radius: 8px;
+            border-left: 4px solid var(--primary);
+            transition: var(--transition);
+            box-shadow: 0 2px 8px rgba(0,0,0,0.02);
+        }
+
+        .notice-item:hover {
+            transform: translateX(5px);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+        }
+
+        .notice-date {
+            font-size: 0.75rem;
+            color: var(--accent);
+            font-weight: 700;
+            text-transform: uppercase;
+            margin-bottom: 5px;
+        }
+
+        .notice-item p {
+            font-weight: 600;
+            font-size: 0.95rem;
+            color: var(--text-dark);
+        }
+
+        /* Testimonials Slider Grid Layout */
+        .testimonials-section {
+            background-color: var(--bg-light);
+            padding: 80px 5%;
+        }
+
+        .testimonials-container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .testimonial-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        .testimonial-card {
+            background-color: var(--white);
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.03);
+            border-top: 4px solid transparent;
+            transition: var(--transition);
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .testimonial-card:hover {
+            border-top-color: var(--accent);
+            transform: translateY(-5px);
+        }
+
+        .quote-icon {
+            color: #dfe6e9;
+            font-size: 2rem;
+            margin-bottom: 15px;
+        }
+
+        .testimonial-card p {
+            color: var(--text-light);
+            font-style: italic;
+            margin-bottom: 25px;
+            font-size: 0.95rem;
+        }
+
+        .student-profile {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .student-avatar {
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            background-color: var(--primary-light);
+            color: var(--white);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+        }
+
+        .student-info h4 {
+            font-size: 1rem;
+            color: var(--primary);
+            font-weight: 700;
+        }
+
+        .student-info p {
+            font-size: 0.8rem;
+            color: var(--text-light);
+            margin-bottom: 0;
+            font-style: normal;
+        }
+
+        /* Complete Modern Footer */
+        footer {
+            background-color: #0b223c;
+            color: rgba(255,255,255,0.7);
+            padding: 70px 5% 20px 5%;
+            font-size: 0.95rem;
+        }
+
+        .footer-grid {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1.2fr 1fr 1fr 1.2fr;
+            gap: 40px;
+            padding-bottom: 50px;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+        }
+
+        .footer-col h3 {
+            color: var(--white);
+            font-size: 1.2rem;
+            margin-bottom: 25px;
+            position: relative;
+            padding-bottom: 10px;
+        }
+
+        .footer-col h3::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            width: 35px;
+            height: 3px;
+            background-color: var(--accent);
+        }
+
+        .footer-col p {
+            margin-bottom: 15px;
+            line-height: 1.7;
+        }
+
+        .footer-col ul {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .footer-col ul li a {
+            color: rgba(255,255,255,0.7);
+            text-decoration: none;
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .footer-col ul li a:hover {
+            color: var(--accent);
+            padding-left: 5px;
+        }
+
+        .contact-info-list li {
+            display: flex;
+            gap: 12px;
+            margin-bottom: 15px;
+        }
+
+        .contact-info-list i {
+            color: var(--accent);
+            margin-top: 5px;
+        }
+
+        /* Footer Forms & Inputs */
+        .footer-form input, .footer-form textarea {
+            width: 100%;
+            padding: 12px;
+            background-color: rgba(255,255,255,0.05);
+            border: 1px solid rgba(255,255,255,0.1);
+            border-radius: 6px;
+            color: var(--white);
+            margin-bottom: 12px;
+            outline: none;
+            transition: var(--transition);
+        }
+
+        .footer-form input:focus, .footer-form textarea:focus {
+            border-color: var(--accent);
+            background-color: rgba(255,255,255,0.08);
+        }
+
+        .footer-form button {
+            background-color: var(--accent);
+            color: var(--white);
+            border: none;
+            padding: 10px 20px;
+            border-radius: 6px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition);
+            width: 100%;
+        }
+
+        .footer-form button:hover {
+            background-color: #e68a2e;
+        }
+
+        .footer-bottom {
+            max-width: 1400px;
+            margin: 20px auto 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 0.85rem;
+        }
+
+        /* Responsive Breakpoints */
+        @media (max-width: 1024px) {
+            .main-grid {
+                grid-template-columns: 1fr;
+            }
+            .footer-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .top-bar {
+                display: none;
+            }
+            .nav-container {
+                flex-direction: column;
+                gap: 15px;
+                text-align: center;
+            }
+            nav ul {
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+            .hero h2 {
+                font-size: 2.2rem;
+            }
+            .footer-grid {
+                grid-template-columns: 1fr;
+            }
+            .footer-bottom {
+                flex-direction: column;
+                gap: 10px;
+                text-align: center;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Top Informational Contact Bar -->
+    <div class="top-bar">
+        <div class="top-contact">
+            <span><i class="fa-solid fa-phone"></i> +91-0154-2440756</span>
+            <span><i class="fa-solid fa-envelope"></i> davcollege.sgnr@gmail.com</span>
+        </div>
+        <div class="top-links">
+            <a href="#">Gallery Login</a>
+            <a href="#">Admin Login</a>
+            <a href="#">Web-Mail</a>
+        </div>
+    </div>
+
+    <!-- Header Navigation & Logo Branding -->
+    <header>
+        <div class="nav-container">
+            <div class="logo-area">
+                <div class="logo-icon">DAV</div>
+                <div class="logo-text">
+                    <h1>D.A.V. COLLEGE</h1>
+                    <p>Sri Ganganagar, Rajasthan</p>
+                </div>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="#"><i class="fa-solid fa-house"></i> Home</a></li>
+                    
+                    <li class="dropdown">
+                        <a href="#">About <i class="fa-solid fa-chevron-down" style="font-size:0.75rem;"></i></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="#">Board of Management</a></li>
+                            <li><a href="#">Campus Infrastructure</a></li>
+                            <li><a href="#">President Note</a></li>
+                            <li><a href="#">Director Message</a></li>
+                            <li><a href="#">Principal Desk</a></li>
+                            <li><a href="#">Academic Staff</a></li>
+                            <li><a href="#">Administrative Staff</a></li>
+                        </ul>
+                    </li>
+
+                    <li class="dropdown">
+                        <a href="#">Faculty <i class="fa-solid fa-chevron-down" style="font-size:0.75rem;"></i></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="#">Faculty of Science</a></li>
+                            <li><a href="#">Faculty of Commerce</a></li>
+                            <li><a href="#">Faculty of Humanities</a></li>
+                        </ul>
+                    </li>
+
+                    <li class="dropdown">
+                        <a href="#">Activities <i class="fa-solid fa-chevron-down" style="font-size:0.75rem;"></i></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="#">Games & Sports</a></li>
+                            <li><a href="#">National Cadet Corps (NCC)</a></li>
+                            <li><a href="#">National Service Scheme (NSS)</a></li>
+                            <li><a href="#">Rover Scout</a></li>
+                        </ul>
+                    </li>
+
+                    <li class="dropdown">
+                        <a href="#">Distance Ed. <i class="fa-solid fa-chevron-down" style="font-size:0.75rem;"></i></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="#">IGNOU</a></li>
+                            <li><a href="#">VMOU</a></li>
+                        </ul>
+                    </li>
+
+                    <li><a href="#">Contact</a></li>
+                    <li><a href="#" class="btn-apply">Apply Online</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Main Hero Banner Area -->
+    <section class="hero">
+        <div class="hero-content">
+            <span class="hero-badge">Admissions Open 2026-27</span>
+            <h2>Empowering Minds,<br>Shaping Global Leaders</h2>
+            <p>Join a legacy of academic excellence, holistic personal growth, and state-of-the-art campus infrastructure built for your future success.</p>
+        </div>
+    </section>
+
+    <!-- Moving Live Announcement Ticker -->
+    <div class="ticker-wrap">
+        <div class="ticker-title"><i class="fa-solid fa-bullhorn"></i> Latest Notice</div>
+        <div class="ticker-text">
+            Admission Open for Academic Session 2026-27. Online Application Forms are Available Now! • Seating Plan Updates available for download • Site is currently under optimization for better performance.
+        </div>
+    </div>
+
+    <!-- Core Grid Layout (About Section & Sidebar Notices) -->
+    <main class="main-grid">
+        <div class="about-box">
+            <h2 class="section-title">Welcome to DAV College</h2>
+            <p>DAV College is one of the most reputed, well-organized, and fully dedicated academic organizations committed to providing premium quality education in the region.</p>
+            <p>The students of our institution consistently lead in multiple industry sectors because we strictly provide a highly conducive, modern academic environment that fuels both intellectual curiosity and operational mastery.</p>
+            
+            <div class="slogan-card">
+                <h4>Our Core Slogan</h4>
+                <p>"Education for Leadership & Development"</p>
+            </div>
+        </div>
+
+        <div class="panel">
+            <h3 class="section-title">Notice Board</h3>
+            <ul class="notice-list">
+                <li class="notice-item">
+                    <div class="notice-date">June 13, 2026</div>
+                    <p>SEATING PLAN SC-2310 Evening Session (B.C.A.)</p>
+                </li>
+                <li class="notice-item">
+                    <div class="notice-date">Live</div>
+                    <p>Online Application Forms & Prospectus Portals Active</p>
+                </li>
+                <li class="notice-item">
+                    <div class="notice-date">System Update</div>
+                    <p>Department portal transitions scheduled for structural updates</p>
+                </li>
+            </ul>
+        </div>
+    </main>
+
+    <!-- Student Testimonials Section Layout -->
+    <section class="testimonials-section">
+        <div class="testimonials-container">
+            <h2 class="section-title">What Our Students Say</h2>
+            <div class="testimonial-grid">
+                
+                <div class="testimonial-card">
+                    <div>
+                        <i class="fa-solid fa-quote-left quote-icon"></i>
+                        <p>I am deeply glad to be a student under your exceptional guidance. You are truly inspiring and I wish to thank all the teachers from the bottom of my heart.</p>
+                    </div>
+                    <div class="student-profile">
+                        <div class="student-avatar">B</div>
+                        <div class="student-info">
+                            <h4>Bhavika</h4>
+                            <p>Student</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="testimonial-card">
+                    <div>
+                        <i class="fa-solid fa-quote-left quote-icon"></i>
+                        <p>All teachers guide us exceptionally well. Their breakdown of complex subjects makes learning immersive, and the absolute care they display for our future is amazing.</p>
+                    </div>
+                    <div class="student-profile">
+                        <div class="student-avatar">G</div>
+                        <div class="student-info">
+                            <h4>Gaurav</h4>
+                            <p>Student</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="testimonial-card">
+                    <div>
+                        <i class="fa-solid fa-quote-left quote-icon"></i>
+                        <p>I am highly thankful to all the faculty members who are always ready to step in and help us adapt to any situation. They are truly gifted guides for us.</p>
+                    </div>
+                    <div class="student-profile">
+                        <div class="student-avatar">S</div>
+                        <div class="student-info">
+                            <h4>Sezal Nagpal</h4>
+                            <p>Student</p>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Structural Grid Footer -->
+    <footer>
+        <div class="footer-grid">
+            <div class="footer-col">
+                <h3>About Us</h3>
+                <p>DAV College stands out as a premier dedicated institution bringing highly structured educational paths and rich community development models to our students.</p>
+            </div>
+            
+            <div class="footer-col">
+                <h3>Quick Links</h3>
+                <ul>
+                    <li><a href="#">Home Base</a></li>
+                    <li><a href="#">Central Library</a></li>
+                    <li><a href="#">Hostel Facilities</a></li>
+                    <li><a href="#">Photo Gallery</a></li>
+                    <li><a href="#">Contact Us</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-col">
+                <h3>Get In Touch</h3>
+                <ul class="contact-info-list">
+                    <li>
+                        <i class="fa-solid fa-location-dot"></i>
+                        <span>Opp. Maharaja Ganga Singh Stadium, Hindumal Kot Road, Sriganganagar (Raj.)</span>
+                    </li>
+                    <li>
+                        <i class="fa-solid fa-envelope"></i>
+                        <span>davcollege.sgnr@gmail.com</span>
+                    </li>
+                    <li>
+                        <i class="fa-solid fa-phone"></i>
+                        <span>+91-0154-2440756, 2444856</span>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="footer-col">
+                <h3>Quick Enquiry</h3>
+                <form class="footer-form" onsubmit="event.preventDefault();">
+                    <input type="text" placeholder="Your Name" required>
+                    <input type="email" placeholder="Your Email" required>
+                    <textarea rows="3" placeholder="Your Message..." required></textarea>
+                    <button type="submit">Submit Details</button>
+                </form>
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+            <p>&copy; 2026 D.A.V. College, Sri Ganganagar. All Rights Reserved.</p>
+            <p>Designed beautifully by the Department of Computer Science</p>
+        </div>
+    </footer>
+
+</body>
+</html>
