@@ -1,7 +1,5 @@
 <?php
 include "conn.php";
-
-// ================= 1. AJAX HANDLER FOR SEMESTERS =================
 if (isset($_GET['action']) && $_GET['action'] == 'get_semesters') {
     if (ob_get_length()) {
         ob_clean();
@@ -21,7 +19,6 @@ if (isset($_GET['action']) && $_GET['action'] == 'get_semesters') {
     exit;
 }
 
-// ================= 2. ADD STUDENT LOGIC =================
 $successMessage = "";
 if (isset($_POST['addStudent'])) {
     $name         = $_POST['name'] ?? '';
@@ -55,7 +52,6 @@ if (isset($_POST['addStudent'])) {
     $successMessage = "Student Added Successfully!";
 }
 
-// Fetch Active Departments for Dropdowns & Filters
 try {
     $dept_stmt = $conn->query("SELECT id, dept_name FROM departments WHERE status='Active'");
     $departmentsList = $dept_stmt->fetchAll(PDO::FETCH_ASSOC);
@@ -69,8 +65,7 @@ include "header.php";
 <main class="py-4">
     <div class="container-fluid px-4">
 
-        <!-- Page Header -->
-        <!-- Page Header -->
+    
         <div class="d-flex justify-content-between align-items-center mb-4">
             <h2 class="text-white fw-bold"><i class="bi bi-people-fill me-2"></i> Student Management</h2>
             <a href="AddStudent.php" class="btn btn-success fw-semibold shadow-sm text-decoration-none">
@@ -102,7 +97,6 @@ include "header.php";
                         </select>
                     </div>
 
-                    <!-- Semester Filter Dropdown (Dynamic) -->
                     <div class="col-md-5">
                         <label class="form-label fw-bold">Semester</label>
                         <select class="form-select" id="filter_sem" disabled>
@@ -110,7 +104,6 @@ include "header.php";
                         </select>
                     </div>
 
-                    <!-- Reset Filter Button -->
                     <div class="col-md-2 d-flex align-items-end">
                         <button type="button" class="btn btn-outline-light w-100 fw-semibold" id="reset_filter">
                             <i class="bi bi-arrow-counterclockwise me-1"></i> Reset
@@ -121,8 +114,6 @@ include "header.php";
             </div>
         </div>
 
-        <!-- STUDENTS TABLE CARD -->
-        <!-- STUDENTS TABLE CARD -->
         <div class="card border-0 shadow bg-dark text-white rounded-4">
             <div class="card-body p-4">
                 <h5 class="mb-3 text-white-50">Students Directory List</h5>

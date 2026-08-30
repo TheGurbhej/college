@@ -26,21 +26,20 @@ if (isset($_GET['action']) && $_GET['action'] == 'get_students') {
 
 // ================= FORM SUBMISSION =================
 $successMessage = "";
-if (isset($_POST['addLibraryIssue'])) {
-    $sql = "INSERT INTO library_issues (student_id, book_name, issue_date, due_date, status) 
-            VALUES (:sid, :book, :idate, :ddate, :status)";
+if (isset($_POST['addHostel'])) {
+    $sql = "INSERT INTO hostel_allocations (student_id, hostel_name, room_no, allocation_date, status) 
+            VALUES (:sid, :hostel, :room, :adate, :status)";
     $stmt = $conn->prepare($sql);
     $stmt->execute([
         ':sid' => $_POST['student_id'],
-        ':book' => $_POST['book_name'],
-        ':idate' => $_POST['issue_date'],
-        ':ddate' => $_POST['due_date'],
+        ':hostel' => $_POST['hostel_name'],
+        ':room' => $_POST['room_no'],
+        ':adate' => $_POST['allocation_date'],
         ':status' => $_POST['status']
     ]);
-    $successMessage = "Book issued successfully!";
+    $successMessage = "Hostel room allocated successfully!";
 }
 
-// Fetch Active Departments for Modal
 $dept_stmt = $conn->query("SELECT id, dept_name FROM departments WHERE status='Active'");
 $departmentsList = $dept_stmt->fetchAll(PDO::FETCH_ASSOC);
 
@@ -50,9 +49,9 @@ include "header.php";
 <main class="py-4">
     <div class="container-fluid px-4">
         <div class="d-flex justify-content-between align-items-center mb-4">
-            <h2 class="text-white fw-bold"><i class="bi bi-book-half me-2"></i> Library Management</h2>
-            <button class="btn btn-info fw-semibold shadow-sm" data-bs-toggle="modal" data-bs-target="#addLibraryModal">
-                <i class="bi bi-plus-circle me-1"></i> Issue Book
+            <h2 class="text-white fw-bold"><i class="bi bi-building-fill me-2"></i> Hostel Management</h2>
+            <button class="btn btn-warning fw-semibold shadow-sm text-dark" data-bs-toggle="modal" data-bs-target="#addHostelModal">
+                <i class="bi bi-plus-circle me-1"></i> Allocate Room
             </button>
         </div>
 
@@ -65,46 +64,45 @@ include "header.php";
 
         <div class="card border-0 shadow bg-dark text-white rounded-4">
             <div class="card-body p-4">
-                <h5 class="mb-3 text-white-50">Issued Books Record</h5>
+                <h5 class="mb-3 text-white-50">Room Allocations</h5>
                 <div class="table-responsive">
                     <table class="table table-dark table-hover align-middle">
                         <thead class="table-light text-dark">
                             <tr>
                                 <th>Student Name</th>
                                 <th>Course/Sem</th>
-                                <th>Book Name</th>
-                                <th>Issue Date</th>
-                                <th>Due Date</th>
+                                <th>Hostel Name</th>
+                                <th>Room No.</th>
+                                <th>Allocation Date</th>
                                 <th>Status</th>
                             </tr>
                         </thead>
                         <tbody>
                             <?php
-                            $stmt = $conn->query("SELECT l.*, s.first_name, s.last_name, d.dept_name, sem.semester_name 
-                                                  FROM library_issues l 
-                                                  JOIN students s ON l.student_id = s.id
+                            $stmt = $conn->query("SELECT h.*, s.first_name, s.last_name, d.dept_name, sem.semester_name 
+                                                  FROM hostel_allocations h 
+                                                  JOIN students s ON h.student_id = s.id
                                                   LEFT JOIN departments d ON s.department_id = d.id
                                                   LEFT JOIN semesters sem ON s.semester_id = sem.id
-                                                  ORDER BY l.id DESC");
+                                                  ORDER BY h.id DESC");
                             if ($stmt->rowCount() > 0) {
                                 while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
                             ?>
                                     <tr>
                                         <td class="fw-bold text-light"><?= htmlspecialchars($row['first_name'] . ' ' . $row['last_name']); ?></td>
                                         <td><small class="text-white-50"><?= htmlspecialchars($row['dept_name'] . ' - ' . $row['semester_name']); ?></small></td>
-                                        <td class="fw-bold text-info"><?= htmlspecialchars($row['book_name']); ?></td>
-                                        <td><?= date("d M Y", strtotime($row['issue_date'])); ?></td>
-                                        <td class="text-warning"><?= date("d M Y", strtotime($row['due_date'])); ?></td>
+                                        <td class="fw-bold text-warning"><?= htmlspecialchars($row['hostel_name']); ?></td>
+                                        <td class="fw-bold fs-5"><?= htmlspecialchars($row['room_no']); ?></td>
+                                        <td><?= date("d M Y", strtotime($row['allocation_date'])); ?></td>
                                         <td>
-                                            <?php
-                                            $badge = ($row['status'] == 'Returned') ? 'success' : (($row['status'] == 'Overdue') ? 'danger' : 'primary');
-                                            ?>
-                                            <span class="badge bg-<?= $badge; ?>"><?= htmlspecialchars($row['status']); ?></span>
+                                            <span class="badge bg-<?= ($row['status'] == 'Allocated') ? 'success' : 'secondary'; ?>">
+                                                <?= htmlspecialchars($row['status']); ?>
+                                            </span>
                                         </td>
                                     </tr>
                             <?php }
                             } else {
-                                echo '<tr><td colspan="6" class="text-center py-3 text-white-50">No books issued currently.</td></tr>';
+                                echo '<tr><td colspan="6" class="text-center py-3 text-white-50">No rooms allocated yet.</td></tr>';
                             } ?>
                         </tbody>
                     </table>
@@ -114,19 +112,19 @@ include "header.php";
     </div>
 </main>
 
-<!-- MODAL: ISSUE BOOK -->
-<div class="modal fade" id="addLibraryModal" tabindex="-1">
+<!-- MODAL: ALLOCATE ROOM -->
+<div class="modal fade" id="addHostelModal" tabindex="-1">
     <div class="modal-dialog modal-lg text-dark">
         <div class="modal-content">
-            <div class="modal-header bg-info text-dark">
-                <h5 class="modal-title fw-bold">Issue New Book</h5>
+            <div class="modal-header bg-warning text-dark">
+                <h5 class="modal-title fw-bold">Allocate Hostel Room</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
             </div>
             <div class="modal-body">
                 <form class="row g-3" method="POST">
                     <div class="col-md-4">
                         <label class="form-label fw-bold">Department</label>
-                        <select class="form-select" id="lib_dept" required>
+                        <select class="form-select" id="hos_dept" required>
                             <option value="">Select Department</option>
                             <?php foreach ($departmentsList as $dept) {
                                 echo "<option value='{$dept['id']}'>{$dept['dept_name']}</option>";
@@ -135,38 +133,41 @@ include "header.php";
                     </div>
                     <div class="col-md-4">
                         <label class="form-label fw-bold">Semester</label>
-                        <select class="form-select" id="lib_sem" required disabled>
+                        <select class="form-select" id="hos_sem" required disabled>
                             <option value="">Select Dept First</option>
                         </select>
                     </div>
                     <div class="col-md-4">
-                        <label class="form-label fw-bold text-info">Select Student</label>
-                        <select class="form-select border-info" name="student_id" id="lib_student" required disabled>
+                        <label class="form-label fw-bold text-warning">Select Student</label>
+                        <select class="form-select border-warning" name="student_id" id="hos_student" required disabled>
                             <option value="">Load Sem First</option>
                         </select>
                     </div>
-                    <div class="col-md-12 mt-4">
-                        <label class="form-label fw-bold">Book Name</label>
-                        <input type="text" class="form-control" name="book_name" placeholder="e.g. Let Us C, Advanced Java" required>
+                    <div class="col-md-6 mt-4">
+                        <label class="form-label fw-bold">Hostel Name</label>
+                        <select class="form-select" name="hostel_name" required>
+                            <option value="Boys Hostel Block A">Boys Hostel Block A</option>
+                            <option value="Boys Hostel Block B">Boys Hostel Block B</option>
+                            <option value="Girls Hostel Block C">Girls Hostel Block C</option>
+                        </select>
                     </div>
-                    <div class="col-md-4 mt-4">
-                        <label class="form-label fw-bold">Issue Date</label>
-                        <input type="date" class="form-control" name="issue_date" value="<?= date('Y-m-d'); ?>" required>
+                    <div class="col-md-6 mt-4">
+                        <label class="form-label fw-bold">Room No.</label>
+                        <input type="text" class="form-control" name="room_no" placeholder="e.g. 101, 205B" required>
                     </div>
-                    <div class="col-md-4 mt-4">
-                        <label class="form-label fw-bold">Due Date</label>
-                        <input type="date" class="form-control" name="due_date" value="<?= date('Y-m-d', strtotime('+14 days')); ?>" required>
+                    <div class="col-md-6 mt-4">
+                        <label class="form-label fw-bold">Allocation Date</label>
+                        <input type="date" class="form-control" name="allocation_date" value="<?= date('Y-m-d'); ?>" required>
                     </div>
-                    <div class="col-md-4 mt-4">
+                    <div class="col-md-6 mt-4">
                         <label class="form-label fw-bold">Status</label>
                         <select class="form-select" name="status" required>
-                            <option value="Issued">Issued</option>
-                            <option value="Returned">Returned</option>
-                            <option value="Overdue">Overdue</option>
+                            <option value="Allocated">Allocated</option>
+                            <option value="Vacated">Vacated</option>
                         </select>
                     </div>
                     <div class="col-12 text-end mt-4">
-                        <button type="submit" name="addLibraryIssue" class="btn btn-info fw-bold">Issue Book</button>
+                        <button type="submit" name="addHostel" class="btn btn-warning fw-bold">Save Allocation</button>
                     </div>
                 </form>
             </div>
@@ -177,36 +178,36 @@ include "header.php";
 <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
 <script>
     $(document).ready(function() {
-        $('#lib_dept').on('change', function() {
+        $('#hos_dept').on('change', function() {
             var deptId = $(this).val();
-            $('#lib_sem').html('<option value="">-- Select Semester --</option>').prop('disabled', true);
-            $('#lib_student').html('<option value="">-- Load Sem First --</option>').prop('disabled', true);
+            $('#hos_sem').html('<option value="">-- Select Semester --</option>').prop('disabled', true);
+            $('#hos_student').html('<option value="">-- Load Sem First --</option>').prop('disabled', true);
             if (deptId) {
                 $.get(window.location.pathname, {
                     action: 'get_semesters',
                     dept_id: deptId
                 }, function(data) {
-                    $('#lib_sem').prop('disabled', false);
+                    $('#hos_sem').prop('disabled', false);
                     $.each(data, function(k, v) {
-                        $('#lib_sem').append('<option value="' + v.id + '">' + v.semester_name + '</option>');
+                        $('#hos_sem').append('<option value="' + v.id + '">' + v.semester_name + '</option>');
                     });
                 }, 'json');
             }
         });
 
-        $('#lib_sem').on('change', function() {
+        $('#hos_sem').on('change', function() {
             var semId = $(this).val();
-            var deptId = $('#lib_dept').val();
-            $('#lib_student').html('<option value="">-- Select Student --</option>').prop('disabled', true);
+            var deptId = $('#hos_dept').val();
+            $('#hos_student').html('<option value="">-- Select Student --</option>').prop('disabled', true);
             if (semId && deptId) {
                 $.get(window.location.pathname, {
                     action: 'get_students',
                     dept_id: deptId,
                     sem_id: semId
                 }, function(data) {
-                    $('#lib_student').prop('disabled', false);
+                    $('#hos_student').prop('disabled', false);
                     $.each(data, function(k, v) {
-                        $('#lib_student').append('<option value="' + v.id + '">' + v.first_name + ' ' + v.last_name + '</option>');
+                        $('#hos_student').append('<option value="' + v.id + '">' + v.first_name + ' ' + v.last_name + '</option>');
                     });
                 }, 'json');
             }

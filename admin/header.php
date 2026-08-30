@@ -65,11 +65,11 @@ $current_page = basename($_SERVER['PHP_SELF']);
                         <li class="nav-item">
                             <a class="nav-link text-white d-flex justify-content-between align-items-center"
                                 data-bs-toggle="collapse" href="#academicSetupMenu" role="button"
-                                aria-expanded="<?= in_array($current_page, ['collegesetup.php', 'departments.php', 'courses.php', 'semsters.php', 'sections.php', 'subject.php']) ? 'true' : 'false'; ?>">
+                                aria-expanded="<?= in_array($current_page, ['collegesetup.php', 'departments.php', 'courses.php', 'semsters.php', 'sections.php', 'syllbus.php']) ? 'true' : 'false'; ?>">
                                 <span><i class="bi bi-gear-fill me-2 text-warning"></i> Academic Setup</span>
                                 <i class="bi bi-chevron-down small"></i>
                             </a>
-                            <div class="collapse <?= in_array($current_page, ['collegesetup.php', 'departments.php', 'courses.php', 'semsters.php', 'sections.php', 'subject.php']) ? 'show' : ''; ?>" id="academicSetupMenu">
+                            <div class="collapse <?= in_array($current_page, ['collegesetup.php', 'departments.php', 'courses.php', 'semsters.php', 'sections.php', 'syllbus.php']) ? 'show' : ''; ?>" id="academicSetupMenu">
                                 <ul class="nav flex-column ms-3 mt-1 gap-1">
                                     <li><a href="collegesetup.php" class="nav-link text-white-50 <?= ($current_page == 'collegesetup.php') ? 'active text-white' : ''; ?>"><i class="bi bi-sliders me-2"></i>College Setup</a></li>
                                     <li><a href="departments.php" class="nav-link text-white-50 <?= ($current_page == 'departments.php') ? 'active text-white' : ''; ?>"><i class="bi bi-diagram-3 me-2"></i>Departments</a></li>
@@ -144,9 +144,9 @@ $current_page = basename($_SERVER['PHP_SELF']);
                                 <span><i class="bi bi-file-earmark-spreadsheet me-2 text-warning"></i> Examinations</span>
                                 <i class="bi bi-chevron-down small"></i>
                             </a>
-                            <div class="collapse <?= in_array($current_page, ['exams.php', 'results.php']) ? 'show' : ''; ?>" id="examMenu">
+                            <div class="collapse <?= in_array($current_page, ['examinations.php', 'results.php']) ? 'show' : ''; ?>" id="examMenu">
                                 <ul class="nav flex-column ms-3 mt-1 gap-1">
-                                    <li><a href="exams.php" class="nav-link text-white-50 <?= ($current_page == 'exams.php') ? 'active text-white' : ''; ?>"><i class="bi bi-pencil-square me-2"></i>Exam Schedule</a></li>
+                                    <li><a href="examinations.php" class="nav-link text-white-50 <?= ($current_page == 'examinations.php') ? 'active text-white' : ''; ?>"><i class="bi bi-pencil-square me-2"></i>Exam Schedule</a></li>
                                     <li><a href="results.php" class="nav-link text-white-50 <?= ($current_page == 'results.php') ? 'active text-white' : ''; ?>"><i class="bi bi-award me-2"></i>Results & Marks</a></li>
                                 </ul>
                             </div>
