@@ -77,9 +77,10 @@ $current_page = basename($_SERVER['PHP_SELF']);
                                 <span><i class="bi bi-gear-fill me-2 text-warning"></i> Academic Setup</span>
                                 <i class="bi bi-chevron-down small"></i>
                             </a>
-                            <div class="collapse <?= in_array($current_page, ['collegesetup.php', 'departments.php', 'courses.php', 'semsters.php', 'sections.php', 'syllbus.php']) ? 'show' : ''; ?>" id="academicSetupMenu">
+                            <div class="collapse <?= in_array($current_page, ['collegesetup.php', 'galarySetup.php', 'departments.php', 'courses.php', 'semsters.php', 'sections.php', 'syllbus.php']) ? 'show' : ''; ?>" id="academicSetupMenu">
                                 <ul class="nav flex-column ms-3 mt-1 gap-1">
                                     <li><a href="collegesetup.php" class="nav-link text-white-50 <?= ($current_page == 'collegesetup.php') ? 'active text-white' : ''; ?>"><i class="bi bi-sliders me-2"></i>College Setup</a></li>
+                                    <li><a href="galarySetup.php" class="nav-link text-white-50 <?= ($current_page == 'galarySetup.php') ? 'active text-white' : ''; ?>"><i class="bi bi-sliders me-2"></i>Galary Setup</a></li>
                                     <li><a href="departments.php" class="nav-link text-white-50 <?= ($current_page == 'departments.php') ? 'active text-white' : ''; ?>"><i class="bi bi-diagram-3 me-2"></i>Departments</a></li>
                                     <li><a href="semsters.php" class="nav-link text-white-50 <?= ($current_page == 'semsters.php') ? 'active text-white' : ''; ?>"><i class="bi bi-calendar3 me-2"></i>Semesters</a></li>
                                     <li><a href="courses.php" class="nav-link text-white-50 <?= ($current_page == 'courses.php') ? 'active text-white' : ''; ?>"><i class="bi bi-journal-bookmark me-2"></i>Courses</a></li>

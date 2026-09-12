@@ -3,6 +3,8 @@ include "header.php";
 ?>
 <?php
 include "./admin/conn.php";
+$stmt = $conn->query("SELECT * FROM gallery ORDER BY id DESC");
+$galleryItems = $stmt->fetchAll();
 ?>
 
 <?php
@@ -382,6 +384,42 @@ $notices = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
         </div>
 
+    </div>
+</section>
+
+<section class="py-2">
+    <div class="container my-5">
+        <div class="text-center mb-5">
+            <h2 class="fw-bold">Campus Gallery</h2>
+            <p class="text-muted">Explore moments and highlights from our campus</p>
+        </div>
+
+        <div class="row g-4">
+            <?php if (!empty($galleryItems)): ?>
+                <?php foreach ($galleryItems as $row): ?>
+                    <div class="col-12 col-sm-6 col-md-4 col-lg-3">
+                        <div class="card h-100 shadow-sm border-0 overflow-hidden">
+                            <img src="admin/uploads/<?= htmlspecialchars($row['image_name']); ?>"
+                                class="card-img-top object-fit-cover"
+                                alt="<?= htmlspecialchars($row['title'] ?: 'College Highlight'); ?>"
+                                style="height: 220px;">
+                            <div class="card-body p-3 text-center">
+                                <h6 class="card-title mb-1 fw-bold text-truncate">
+                                    <?= htmlspecialchars($row['title'] ?: 'Campus Highlight'); ?>
+                                </h6>
+                                <span class="badge bg-primary-subtle text-primary border border-primary-subtle">
+                                    <?= htmlspecialchars($row['category']); ?>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                <?php endforeach; ?>
+            <?php else: ?>
+                <div class="col-12 text-center py-5">
+                    <p class="text-muted fs-5">No images uploaded to the gallery yet.</p>
+                </div>
+            <?php endif; ?>
+        </div>
     </div>
 </section>
 
