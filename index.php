@@ -836,7 +836,7 @@ $notices = $stmt->fetchAll(PDO::FETCH_ASSOC);
             <div class="col-md-6 col-lg-3" data-aos="fade-up" data-aos-delay="0">
                 <div class="card faculty-card border-0 shadow-sm h-100">
 
-                    <img src="img/download (5).jpg" class="faculty-img" alt="Faculty">
+                    <img src="img/pro5 female.jpg" class="faculty-img" alt="Faculty">
 
                     <div class="card-body text-center">
 
@@ -875,11 +875,11 @@ $notices = $stmt->fetchAll(PDO::FETCH_ASSOC);
             <div class="col-md-6 col-lg-3" data-aos="fade-up" data-aos-delay="150">
                 <div class="card faculty-card border-0 shadow-sm h-100">
 
-                    <img src="img/Modi I love Rahul Gandhi t shirt 👕🎽.jpg" class="faculty-img" alt="Faculty">
+                    <img src="img/male.jpg" class="faculty-img" alt="Faculty">
 
                     <div class="card-body text-center">
 
-                        <h5 class="fw-bold mb-1">Dr. Meowdi</h5>
+                        <h5 class="fw-bold mb-1">Dr. Manish</h5>
 
                         <span class="badge bg-danger mb-3">
                             Associate Professor
@@ -918,7 +918,7 @@ $notices = $stmt->fetchAll(PDO::FETCH_ASSOC);
             <div class="col-md-6 col-lg-3" data-aos="fade-up" data-aos-delay="300">
                 <div class="card faculty-card border-0 shadow-sm h-100">
 
-                    <img src="img/Bapuji 😂👁️.jpg" class="faculty-img" alt="Faculty">
+                    <img src="img/prop 4.jpg" alt="Faculty">
 
                     <div class="card-body text-center">
 
@@ -957,11 +957,11 @@ $notices = $stmt->fetchAll(PDO::FETCH_ASSOC);
             <div class="col-md-6 col-lg-3" data-aos="fade-up" data-aos-delay="450">
                 <div class="card faculty-card border-0 shadow-sm h-100 ">
 
-                    <img src="img/Hain.jpg" class="faculty-img" alt="Faculty">
+                    <img src="img/pro3.jpg" class="faculty-img" alt="Faculty">
 
                     <div class="card-body text-center">
 
-                        <h5 class="fw-bold mb-1">Dr. Acp Pradyuman</h5>
+                        <h5 class="fw-bold mb-1">Dr.  Pradyuman</h5>
 
                         <span class="badge bg-danger mb-3">
                             Assistant Professor

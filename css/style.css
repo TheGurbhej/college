@@ -246,6 +246,7 @@ body.modal-open {
 .faculty-img{
     width:100%;
     height:320px;
+    max-height: 300px;
     object-fit:cover;
     transition:.5s;
 }
