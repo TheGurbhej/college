@@ -3,10 +3,10 @@ include "header.php";
 include "conn.php";
 
 // Fetching total students
-// $sql = "SELECT COUNT(*) AS total_students FROM student";
-// $stmt = $conn->prepare($sql);
-// $stmt->execute();
-// $totalStudents = $stmt->fetch(PDO::FETCH_ASSOC)['total_students'];
+$sql = "SELECT COUNT(*) AS total_students FROM student";
+$stmt = $conn->prepare($sql);
+$stmt->execute();
+$totalStudents = $stmt->fetch(PDO::FETCH_ASSOC)['total_students'];
 
 // Fetching total teachers
 $sql = "SELECT COUNT(*) AS total_teachers FROM teacher";
